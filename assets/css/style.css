@@ -1,0 +1,36 @@
+div.containerGame {
+    height: 370px;
+    width: 430px;
+    border: 0px #333;
+    background-color: #888888;
+    margin-left: 33%;
+    margin-top: 22px;
+}
+
+.container1 {
+    height: 350px;
+    width: 200px;
+    border: 10px #111;
+    background-color: #101880;
+    float: left;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+.container2 {
+    height: 350px;
+    width: 200px;
+    border-top: 10px #333;
+    background-color: #9c1e1e;
+    margin-left: 10px;
+    margin-top: 10px;
+    float: left;
+    color: white;
+    text-align: center;
+    
+}
+
+#lettersGuessed {
+    margin-left: 3px;
+    margin-right: 3px;
+}
