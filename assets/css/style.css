@@ -35,3 +35,7 @@ div.containerGame {
     margin-right: 10px;
     text-align: left;
 }
+
+#currentWord {
+margin-top: 10px;
+}
