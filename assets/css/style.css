@@ -31,8 +31,8 @@ div.containerGame {
 }
 
 #lettersGuessed {
-    margin-left: 10px;
-    margin-right: 10px;
+    margin-left: 20px;
+    margin-top: 15px;
     text-align: left;
 }
 

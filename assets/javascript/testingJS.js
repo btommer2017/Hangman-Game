@@ -12,24 +12,29 @@ let wins = 0;
 playGame();
 
 function eraseAnswer() {
+    //Chooses word randombly from the wordBank
+    // songPicked = (songList[Math.floor(Math.random() * songList.length)]);
+    //Splits the choosen word into individual letters
+    lettersInWord = songPicked.split('');
+    //Get the number of blanks
+    numBlanks = lettersInWord.length;
+
+    document.getElementById("currentWord").innerHTML = '';
     alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', " "];
     correctLetters = [];
     wrongLetters = [];
     guessesLeft = 10;
-    document.getElementById('guessesLeft').innerHTML = guessesLeft;
-    document.getElementById('lettersGuessed').innerHTML = wrongLetters;
     rightGuessCounter = 0;
     test = false;
 }
 
+
 function playGame() {
-    document.getElementById('wins').innerHTML = wins;
-    
+    // eraseAnswer()
     songPicked = (songList[Math.floor(Math.random() * songList.length)]);
     console.log(songPicked);
     //split songPicked into individual letters
     lettersInWord = songPicked.split('');
-    document.getElementById("currentWord").innerHTML = '';
     console.log(lettersInWord);
     //get number of blanks
     numBlanks = lettersInWord.length;
@@ -41,12 +46,13 @@ function playGame() {
     }
 
     //add changes to the HTML
-    document.getElementById('currentWord').innerhtml = correctLetters.join(' ');
+    document.getElementById('currentWord').innerhtml = correctLetters.join('');
     document.getElementById('guessesLeft').innerhtml = guessesLeft;
     console.log("Guesses remaining " + guessesLeft);
     document.getElementById('wins').innerhtml = wins;
     document.getElementById('lettersGuessed').innerhtml = wrongLetters;
     // console.log("Wrong Letters " + wrongLetters);
+
 }
 
 function checkLetters(userKey) {
@@ -61,12 +67,11 @@ function checkLetters(userKey) {
                 rightGuessCounter++;
                 correctLetters[i] = userKey;
                 document.getElementById('currentWord').innerHTML = correctLetters.join(' ');
-                console.log(correctLetters);
-                console.log('Guesses left are ' + guessesLeft);
             }
         }
+       
+        console.log(correctLetters);
     }
-
     //Wrong Keys
     else {
         wrongLetters.push(userKey);
@@ -86,38 +91,29 @@ function winLose() {
     if (rightGuessCounter === numBlanks) {
         wins = wins + 1;
         document.getElementById('wins').innerHTML = wins;
-        //add pause so the last winning letter appears
+     //add pause so the last winning letter appears
         function winner() {
-            setTimeout(function () {
-                alert("You Win!");
-            }, 500);
-            setTimeout(function () {
-                eraseAnswer();
-            }, 2000);
-            setTimeout(function () {
-                playGame();
-            }, 2300);
-        }
+            setTimeout(function(){ alert("You Win!"); }, 500);
+            setTimeout(function(){eraseAnswer();},2000);
+            setTimeout(function(){playGame();},2300);
+                  }
+        
         winner();
-
+      
     }
     // if guessesLeft = 0, alert "You Lose"
     else if (guessesLeft === 0) {
-
-        function loser() {
-            setTimeout(function () {
-                alert("You Lose, Try Again!");
-            }, 500);
-            setTimeout(function () {
-                eraseAnswer();
-            }, 2000);
-            setTimeout(function () {
-                playGame();
-            }, 2300);
-        }
-        loser();
+      
+        alert('You Lose');
+        
+        eraseAnswer();
+        playGame();
     }
 }
+
+
+
+
 
 document.onkeyup = function (event) {
     test = true;
@@ -128,6 +124,7 @@ document.onkeyup = function (event) {
             //Test / Debug
             console.log('Double word is = ' + alphabet[i])
             console.log('Spliced Word is = ' + spliceDword);
+
             checkLetters(letterGuessed);
             winLose();
         }
